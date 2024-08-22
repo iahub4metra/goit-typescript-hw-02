@@ -6,6 +6,7 @@ import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx"
 import Loader from "../Loader/Loader.jsx"
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
 import ImageModal from "../ImageModal/ImageModal.jsx";
+import { ImgType } from "./App.types";
 
 const customStyles = {
         overlay: {
@@ -33,9 +34,9 @@ const customStyles = {
 const App = () => {
    
 
-    const [images, setImages] = useState([])
+    const [images, setImages] = useState<object[]>([])
 
-    const [query, setQuery] = useState('');
+    const [query, setQuery] = useState<string>('');
     
     const [page, setPage] = useState(1)
 
@@ -45,18 +46,18 @@ const App = () => {
 
     const [showErorrMsg, setShowErrorMsg] = useState(false)
 
-    const [selectedImage, setSelectedImage] = useState(null)
+    const [selectedImage, setSelectedImage] = useState<any>(null)
 
     const [modalIsOpen, setOpenModal] = useState(false)
 
-    const handleClickOnImage = (image) => {
+    const handleClickOnImage = (image: object) => {
         if (!selectedImage) {
             setSelectedImage(image)
             setOpenModal(true)
         }
     }
 
-    const updateQuery = (text) => {
+    const updateQuery = (text: string) => {
         setQuery(text)
         setPage(1)
         setImages([])
@@ -75,8 +76,8 @@ const App = () => {
                 setImages(fetchedImages)
             } else {
                 setImages(prevImages => {
-                    const seen = new Set(prevImages.map(img => img.id));
-                    const uniqueImages = fetchedImages.filter(img => !seen.has(img.id));
+                    const seen = new Set(prevImages.map((img: Partial<ImgType>) => img.id));
+                    const uniqueImages = fetchedImages.filter((img: Partial<ImgType>) => !seen.has(img.id));
                     return [...prevImages, ...uniqueImages];
                 });
             }

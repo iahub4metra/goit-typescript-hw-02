@@ -11,7 +11,7 @@ const notify = () => {
     })}
 
 
-const SearchBar = ({ updateQuery, renderImages }) => {
+const SearchBar = ({ updateQuery}) => {
     
     const handleSumbit = () => {
         const input = document.querySelector('input[type="text"]');
