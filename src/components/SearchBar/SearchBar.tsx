@@ -1,6 +1,11 @@
 import { IoSearch } from "react-icons/io5";
 import css from "./SearchBar.module.css"
 import toast, {Toaster} from "react-hot-toast"
+import { FormEvent } from "react";
+
+type Props = {
+    updateQuery: (text: string)=> void
+}
 
 const notify = () => {
         toast.error('Please fill the field!', {
@@ -10,11 +15,10 @@ const notify = () => {
             }
     })}
 
-
-const SearchBar = ({ updateQuery}) => {
+const SearchBar = ({ updateQuery}: Props) => {
     
     const handleSumbit = () => {
-        const input = document.querySelector('input[type="text"]');
+        const input = document.querySelector('input[type="text"]') as HTMLInputElement;
         if (!input.value.trim()) {
             notify()
         }
@@ -23,7 +27,7 @@ const SearchBar = ({ updateQuery}) => {
 
     return ( 
         <header className={css.headerSearchBar}>
-            <form className={css.formSearchBar} onSubmit={(e) => {
+            <form className={css.formSearchBar} onSubmit={(e: FormEvent) => {
                 e.preventDefault();
                 handleSumbit()
             }}>

@@ -6,7 +6,8 @@ import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx"
 import Loader from "../Loader/Loader.jsx"
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
 import ImageModal from "../ImageModal/ImageModal.jsx";
-import { ImgType } from "./App.types";
+import { ImgType, Image } from "./App.types";
+
 
 const customStyles = {
         overlay: {
@@ -33,10 +34,9 @@ const customStyles = {
 
 const App = () => {
    
+    const [images, setImages] = useState<Image[]>([])
 
-    const [images, setImages] = useState<object[]>([])
-
-    const [query, setQuery] = useState<string>('');
+    const [query, setQuery] = useState('');
     
     const [page, setPage] = useState(1)
 
@@ -50,7 +50,7 @@ const App = () => {
 
     const [modalIsOpen, setOpenModal] = useState(false)
 
-    const handleClickOnImage = (image: object) => {
+    const handleClickOnImage = (image: Image) => {
         if (!selectedImage) {
             setSelectedImage(image)
             setOpenModal(true)

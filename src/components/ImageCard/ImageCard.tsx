@@ -1,11 +1,5 @@
 import css from "./ImageCard.module.css"
-
-type Image = {
-    urls: {
-        small: string,
-    },
-    alt_description:string,
-}
+import { Image } from "../App/App.types";
 
 type Props = {
     image: Image,

@@ -1,6 +1,14 @@
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css"
-const ImageGallery = ({images, openModal}) => {
+import { Image } from "../App/App.types";
+
+type Props = {
+    images: Image[],
+    openModal: (arg: Image) => void
+}
+
+
+const ImageGallery = ({images, openModal}:Props) => {
     return ( 
         <ul className={css.listGallery}>
             {images.map(image => (
