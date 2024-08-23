@@ -6,7 +6,7 @@ import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx"
 import Loader from "../Loader/Loader.jsx"
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
 import ImageModal from "../ImageModal/ImageModal.jsx";
-import { ImgType, Image } from "./App.types";
+import { Image } from "./App.types";
 
 
 const customStyles = {
@@ -76,8 +76,8 @@ const App = () => {
                 setImages(fetchedImages)
             } else {
                 setImages(prevImages => {
-                    const seen = new Set(prevImages.map((img: Partial<ImgType>) => img.id));
-                    const uniqueImages = fetchedImages.filter((img: Partial<ImgType>) => !seen.has(img.id));
+                    const seen = new Set(prevImages.map((img: Image) => img.id));
+                    const uniqueImages = fetchedImages.filter((img: Image) => !seen.has(img.id));
                     return [...prevImages, ...uniqueImages];
                 });
             }

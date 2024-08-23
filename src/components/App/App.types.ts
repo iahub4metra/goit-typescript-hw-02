@@ -1,9 +1,3 @@
-export type ImgType = {
-    id: string,
-
-}
-
-
 export type Image = {
     id: string,
     urls: {
